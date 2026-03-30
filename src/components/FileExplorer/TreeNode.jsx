@@ -1,18 +1,20 @@
 import React, { useState } from 'react';
+import { useFiles } from '../../context/FileContext';
 import './FileExplorer.css';
 
-const TreeNode = ({ item, level = 0, onSelect, selectedId }) => {
+const TreeNode = ({ item, level = 0 }) => {
+  const { selectedItem, selectItem } = useFiles();
   const [isOpen, setIsOpen] = useState(level === 0); // Root starts open
   const isFolder = item.type === 'folder';
-  const isSelected = selectedId === item.id;
+  const isSelected = selectedItem?.id === item.id;
   const isVault = item.id === 'root_1' || item.name === 'Vault';
 
-  const toggleOpen = (e) => {
+  const handleClick = (e) => {
     e.stopPropagation();
     if (isFolder) {
       setIsOpen(!isOpen);
     }
-    onSelect(item);
+    selectItem(item);
   };
 
   const getIcon = () => {
@@ -54,7 +56,7 @@ const TreeNode = ({ item, level = 0, onSelect, selectedId }) => {
       <div 
         className={`tree-node ${isSelected && isFolder ? 'active-folder' : ''} ${isSelected && !isFolder ? 'selected-file' : ''}`}
         style={{ paddingLeft: `${16 + level * 16}px` }}
-        onClick={toggleOpen}
+        onClick={handleClick}
         role="treeitem"
         aria-expanded={isFolder ? isOpen : undefined}
         tabIndex="0"
@@ -74,8 +76,6 @@ const TreeNode = ({ item, level = 0, onSelect, selectedId }) => {
               key={child.id}
               item={child}
               level={level + 1}
-              onSelect={onSelect}
-              selectedId={selectedId}
             />
           ))}
         </div>
