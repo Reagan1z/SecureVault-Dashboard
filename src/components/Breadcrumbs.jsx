@@ -4,7 +4,7 @@ import { findPath } from '../utils/treeUtils';
 import data from '../../data.json';
 
 const Breadcrumbs = () => {
-  const { selectedItem } = useFiles();
+  const { selectedItem, selectItem } = useFiles();
 
   const path = useMemo(() => {
     if (!selectedItem) return [];
@@ -21,11 +21,14 @@ const Breadcrumbs = () => {
 
   return (
     <nav className="breadcrumbs-container">
-      <span className="breadcrumb-item">Root</span>
+      <span className="breadcrumb-item clickable" onClick={() => selectItem(null)}>Root</span>
       {path.map((node, index) => (
         <React.Fragment key={node.id}>
           <span className="breadcrumb-separator">/</span>
-          <span className={`breadcrumb-item ${index === path.length - 1 ? 'active' : ''}`}>
+          <span 
+            className={`breadcrumb-item clickable ${index === path.length - 1 ? 'active' : ''}`}
+            onClick={() => selectItem(node)}
+          >
             {node.name.replace(/_/g, ' ')}
           </span>
         </React.Fragment>

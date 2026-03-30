@@ -213,6 +213,15 @@
   text-transform: uppercase;
   letter-spacing: 1.5px;
   color: var(--text-secondary);
+  transition: all var(--transition-normal);
+}
+
+.breadcrumb-item.clickable {
+  cursor: pointer;
+}
+
+.breadcrumb-item.clickable:hover {
+  color: var(--bg-accent);
 }
 
 .breadcrumb-item.active {
