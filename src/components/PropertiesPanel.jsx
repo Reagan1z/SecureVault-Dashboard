@@ -1,8 +1,9 @@
 import React from 'react';
 import { useFiles } from '../context/FileContext';
+import { mockActivities } from '../data/mockActivities';
 
 const PropertiesPanel = () => {
-  const { selectedItem } = useFiles();
+  const { selectedItem, activities, addActivity } = useFiles();
 
   if (!selectedItem) {
     return (
@@ -14,6 +15,22 @@ const PropertiesPanel = () => {
       </section>
     );
   }
+
+  const itemActivities = activities[selectedItem.id] || [];
+
+  const handleAction = (action) => {
+    const timestamp = new Intl.DateTimeFormat('en-US', {
+      hour: 'numeric',
+      minute: 'numeric',
+      hour12: true
+    }).format(new Date());
+    
+    addActivity(selectedItem.id, {
+      user: "Current User (You)",
+      action: action,
+      timestamp: `Today, ${timestamp}`
+    });
+  };
 
   return (
     <section className="properties-panel">
@@ -59,15 +76,33 @@ const PropertiesPanel = () => {
 
         <div className="properties-actions">
           <h4 className="detail-heading">Actions</h4>
-          <button className="action-row-button">
+          <button className="action-row-button" onClick={() => handleAction('Shared')}>
             <span>Share</span>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
           </button>
-          <button className="action-row-button">
+          <button className="action-row-button" onClick={() => handleAction('Downloaded')}>
             <span>Download</span>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
           </button>
         </div>
+
+        {itemActivities.length > 0 && (
+          <div className="properties-activity">
+            <h4 className="detail-heading">Recent Activity</h4>
+            <div className="activity-list">
+              {itemActivities.map((activity, index) => (
+                <div key={index} className="activity-item">
+                  <div className="activity-dot" />
+                  <div className="activity-header">
+                    <span className="activity-action">{activity.action}</span>
+                    <span className="activity-time">{activity.timestamp}</span>
+                  </div>
+                  <div className="activity-user">{activity.user}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </section>
   );
