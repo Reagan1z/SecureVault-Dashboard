@@ -8,7 +8,9 @@ const PropertiesPanel = () => {
   if (!selectedItem) {
     return (
       <section className="properties-panel">
-        <h2 className="section-title">Properties</h2>
+        <div className="properties-header">
+          <h2 className="section-title">Properties</h2>
+        </div>
         <div className="placeholder-content">
           <div className="placeholder-text">Select a folder or file to see its metadata.</div>
         </div>
@@ -34,8 +36,10 @@ const PropertiesPanel = () => {
 
   return (
     <section className="properties-panel">
-      <h2 className="section-title">Properties</h2>
-      <div className="placeholder-content">
+      <div className="properties-header">
+        <h2 className="section-title">Properties</h2>
+      </div>
+      <div className="properties-content">
         <div className="preview-placeholder">
            <div className="preview-inner">
               <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeOpacity="0.2">

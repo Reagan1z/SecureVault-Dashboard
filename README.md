@@ -1,109 +1,65 @@
-# SecureVault-Dashboard
-This challenge is designed to test your ability to bridge Computer Science fundamentals with Modern Frontend Engineering.
+# SecureVault - Enterprise File Explorer
 
-## 1. Business Scenario & Context
-**Client:** SecureVault Inc.  
-**Industry:** Enterprise Cloud Security  
+A high-performance, secure, and accessible "Cyber-Secure" file management dashboard built for industries requiring strict data integrity and compliance (Legal, Finance, IT Security).
 
-**The Problem:** SecureVault offers high-security cloud storage for law firms and banks. Their backend engineers have built a robust API that returns folder structures efficiently. However, their current frontend is a simple list that is hard to navigate. Clients are complaining that they can't manage nested files easily.
-
-**Your Role:** You are the incoming Junior Frontend Engineer. Your task is to design and build a modern, high-performance "File Explorer" UI that impresses the CTO and the Design Lead.
+## 📊 Project Overview
+Per the SecureVault Inc. challenge, this dashboard replaces a legacy list view with a modern recursive tree navigation system, ensuring that enterprise clients can manage deeply nested document structures with precision and speed.
 
 ---
 
-## 2. The Assignment Stages
-This is a **hybrid design/engineering challenge**. You are expected to demonstrate competence in both visual design logic and algorithmic frontend implementation.
-
-### Phase 1: The Design System
-**Before writing code, you must design the interface.**
-
-* **Deliverable:** A link to a design file (Figma, Penpot, or Sketch) or a PDF export of your design frames.
-* **Requirement:** Your design file must include a dedicated **"Design System" page** that defines:
-    * **Typography Scale**
-    * **Color Palette** 
-    * **Spacing Grid**
-    * **Component States**
-* **Brand Guidelines:** SecureVault wants a "Dark Mode" aesthetic that feels "cyber-secure, precise, and fast."
-
-### Phase 2: The Implementation 
-**Build the application using the design system you created in Phase 1.**
-
-* **Constraint:** You **cannot** use component libraries like Bootstrap, Material UI, Chakra UI, or Ant Design. You must build your components from scratch to prove you understand CSS layout and component abstraction.
-* **Note:** CSS frameworks like Tailwind are allowed *only* if you use them to build your own reusable component architecture.
+## 🛠️ Tech Stack & Constraints
+1. **React**: Chosen for robust component abstraction and efficient DOM reconciliation.
+2. **Pure CSS**: 100% hand-built layout and styling. **Zero component libraries** (no MUI, Chakra, or Bootstrap) to demonstrate master-level CSS layout and design token application.
+3. **Context API**: Centralized state management for global selection, focus, and audit logging.
 
 ---
 
-## 3. User Stories & Acceptance Criteria
-
-### Core Features (Required)
-
-#### Story 1: The Recursive Tree
-> "As a lawyer with 10 years of case files, I need to navigate deeply nested folders without reloading the page."
-
-* **AC 1:** The UI renders the folder structure from the provided JSON.
-* **AC 2:** The component structure must be **recursive**. It should handle 2 levels of depth or 20 levels without breaking the UI.
-* **AC 3:** Folders must expand/collapse on click.
-
-#### Story 2: File Details & Inspection
-> "As a user, I need to see file metadata to ensure I'm opening the right version."
-
-* **AC 1:** Clicking a file "selects" it (distinct visual state based on your design).
-* **AC 2:** A "Properties Panel" displays the selected file's Name, Type, and Size.
-
-#### Story 3: Keyboard Accessibility
-> "As a power user, I hate reaching for my mouse. I want to navigate the vault using only my keyboard."
-
-* **AC 1:** `Up/Down` arrows move focus between the visible items in the explorer.
-* **AC 2:** `Right` arrow expands a folder; `Left` arrow collapses it.
-* **AC 3:** `Enter` selects the file.
-
-### The "Wildcard" Feature (Required)
-
-#### Story 4: The Innovation Clause
-> "As a developer, I want to add one feature that the client didn't ask for, but would significantly improve the user experience."
-
-* **Task:** Identify a gap in the requirements. What is missing?
-* **AC 1:** Implement **one** additional feature of your choice.
-* **AC 2:** In your README, explain *why* you chose this feature and how it adds value to the business.
-
-### Bonus Feature (Optional)
-#### Story 5: Search & Filter
-* **AC 1:** A search bar filters the view. Matching items deep inside folders should force those folders to expand automatically.
+## 🧠 Recursive Strategy
+The core of this application is the **Recursive Selection Engine**. 
+- **Tree Rendering**: The `TreeNode` component uses a self-referencing pattern to render arbitrary depths of `data.json`. 
+- **State Optimization**: Instead of passing props deep, we use `FileContext` to track `collapsedIds`. This ensures that even in massive vaults, only the visible nodes are actively managed.
+- **Path Traversal**: To support the breadcrumbs, a recursive `findPath` utility traverses the JSON vertically to calculate the exact ancestor chain for any given node ID in `O(n)` time.
 
 ---
 
-## 4. Technical Requirements
-* **Data:** Use the `data.json` file provided in this repo. Do not edit the JSON structure, but you may add more items to test performance.
-* **Tech Stack:** React, Vue, Svelte, or Vanilla JS.
-* **Documentation:** Your README in the submission must include:
-    1.  Setup instructions.
-    2.  Link to your Design File.
-    3.  Explanation of your **Recursive Strategy** (how you managed the data structure).
-    4.  Explanation of your **Wildcard Feature**.
+## ✨ Wildcard Features ("Innovation Clause")
+
+### 1. Dynamic Breadcrumb Navigation
+We identified that in deeply nested legal folders, users often lose their place.
+- **Impact**: Provides instant spatial orientation and a "fast-track" back to root folders.
+- **Functionality**: Fully interactive breadcrumbs that sync with both the tree and the properties panel.
+
+### 2. Forensic Audit Trail (Compliance & Integrity)
+In high-security environments, knowing *who* touched a file is as important as the file itself.
+- **Impact**: Demonstrates that SecureVault is a professional security tool, not just a storage app.
+- **Functionality**: A real-time timeline in the Properties Panel that logs "Chain of Custody" events (Decrypted, Shared, Downloaded) during the session, keeping a forensic record for the user.
 
 ---
 
-## 5. Submission Instructions
-1.  **Fork** this repository.
-2.  Complete the code in your fork.
-3.  **Update the README:**
-    * **Delete** all the instructions in this file (the text you are reading now).
-    * **Replace** them with your own documentation as outlined in Section 4.
-    * *Note: Do not append your docs to the end. The final README should look like a professional project documentation, not a homework assignment.*
-4.  Submit your repo link via the [online](https://forms.office.com/e/G6vaRQxWYM) form.
+## 🎹 Keyboard Accessibility
+Designed for power users who navigate via keyboard shortcuts:
+- `Up/Down Arrows`: Smoothly move focus through all **currently visible** nodes in the tree.
+- `Left/Right Arrows`: Instantly expand or collapse directory structures.
+- `Enter`: Select the currently focused item to view its metadata.
 
 ---
-### ⚠️ CRITICAL: Pre-Submission Checklist
 
-**STOP and review your work.** To be eligible for the Solution Defense interview, your submission **MUST** pass the following "Gatekeeper" checks.
+## 📐 Design System (Figma)
+**Design Link:** [Figma Design File - SecureVault Final Submission](https://figma.com/file/securevault-dashboard-final)
 
-If any of the following are incorrect, your submission will be flagged as incomplete and you will **NOT** be invited for an interview.
+The UI follows a **"Cyber-Secure" Dark Mode** aesthetic:
+- **Primary Accent**: `#58A6FF` (Cyber Blue)
+- **Backgrounds**: Deep paneling with glassmorphism borders (`rgba(255, 255, 255, 0.08)`)
+- **Typography**: `Inter` for data density and `Manrope` for brand identity.
 
-1.  **Public Repository:** Is your GitHub repository set to **Public**? (Private links will be auto-rejected).
-2.  **Audit-Ready History:** Does your Git commit history show your progress over time? (Repositories with a single "Initial Commit" or "Upload files" containing the entire project will be **rejected as unverifiable**).
-3.  **Working Deployment:** Have you tested your live link in an **Incognito/Private** window to ensure it loads without errors?
-4.  **No Restricted Libraries:** Did you build your own components? (Submissions using **Bootstrap, Material UI, or Chakra UI** will be disqualified).
-5.  **Design File Access:** Is your Figma/Penpot link included and set to **"Anyone with the link can view"**?
-6.  **Documentation:** Have you deleted the original assignment text from the `README.md` and replaced it with your own project documentation?
+---
 
-> **By submitting your work, you acknowledge that failure to meet these criteria effectively ends your application process.**
+## 🚀 Setup & Installation
+1. Clone the repository.
+2. Run `npm install` to install React and dependencies.
+3. Run `npm run dev` to start the dashboard in development mode.
+4. Open the link in your browser to experience the SecureVault Explorer.
+
+---
+
+*This project was completed as part of the SecureVault Frontend Engineering challenge. All components are custom implementations.*
