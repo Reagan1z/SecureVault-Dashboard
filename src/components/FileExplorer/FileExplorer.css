@@ -99,6 +99,13 @@
   flex-shrink: 0;
 }
 
-.node-children {
-  margin-top: 2px;
+/* Figma: Keyboard focus state */
+.tree-node.focused {
+  outline: 2px solid var(--text-accent);
+  outline-offset: -2px;
+  background-color: rgba(255, 255, 255, 0.04);
+}
+
+.tree-node:focus {
+  outline: none; /* We handle focus via the .focused class */
 }

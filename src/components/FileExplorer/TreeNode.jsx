@@ -1,20 +1,33 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useFiles } from '../../context/FileContext';
 import './FileExplorer.css';
 
 const TreeNode = ({ item, level = 0 }) => {
-  const { selectedItem, selectItem } = useFiles();
-  const [isOpen, setIsOpen] = useState(level === 0); // Root starts open
+  const { selectedItem, selectItem, focusedId, setFocusedId, collapsedIds, toggleNodeExpansion } = useFiles();
+  const nodeRef = useRef(null);
+  
   const isFolder = item.type === 'folder';
   const isSelected = selectedItem?.id === item.id;
+  const isFocused = focusedId === item.id;
+  const isOpen = isFolder && !collapsedIds.has(item.id);
   const isVault = item.id === 'root_1' || item.name === 'Vault';
+
+  useEffect(() => {
+    if (isFocused && nodeRef.current) {
+      nodeRef.current.focus();
+    }
+  }, [isFocused]);
 
   const handleClick = (e) => {
     e.stopPropagation();
     if (isFolder) {
-      setIsOpen(!isOpen);
+      toggleNodeExpansion(item.id);
     }
     selectItem(item);
+  };
+
+  const handleFocus = () => {
+    setFocusedId(item.id);
   };
 
   const getIcon = () => {
@@ -54,11 +67,14 @@ const TreeNode = ({ item, level = 0 }) => {
   return (
     <div className="tree-node-wrapper">
       <div 
-        className={`tree-node ${isSelected && isFolder ? 'active-folder' : ''} ${isSelected && !isFolder ? 'selected-file' : ''}`}
+        ref={nodeRef}
+        className={`tree-node ${isSelected && isFolder ? 'active-folder' : ''} ${isSelected && !isFolder ? 'selected-file' : ''} ${isFocused ? 'focused' : ''}`}
         style={{ paddingLeft: `${16 + level * 16}px` }}
         onClick={handleClick}
+        onFocus={handleFocus}
         role="treeitem"
         aria-expanded={isFolder ? isOpen : undefined}
+        aria-selected={isSelected}
         tabIndex="0"
       >
         {isSelected && isFolder && <div className="active-indicator" />}
