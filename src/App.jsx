@@ -6,20 +6,26 @@ function App() {
     <div className="securevault-app">
       <header className="app-header">
         <h1>SecureVault <span>Explorer</span></h1>
-        {/* Breadcrumb will go here */}
+        <div className="header-actions">
+          {/* Settings / Notifications placeholder */}
+        </div>
       </header>
       
-      <main className="app-main">
-        <aside className="sidebar">
-          {/* SearchBar and Recursive FileTree will go here */}
-          <div className="placeholder-text">File Tree Placeholder</div>
-        </aside>
-        
-        <section className="properties-panel">
-          {/* File Details will go here */}
-          <div className="placeholder-text">Properties Panel Placeholder</div>
-        </section>
+      <aside className="sidebar">
+        {/* Navigation placeholder */}
+        <div className="placeholder-text">Navigation / Sidebar</div>
+      </aside>
+      
+      <main className="app-main-content">
+        {/* Breadcrumbs placeholder */}
+        {/* File Explorer placeholder */}
+        <div className="placeholder-text">File Explorer Main View</div>
       </main>
+      
+      <section className="properties-panel">
+        {/* Properties details placeholder */}
+        <div className="placeholder-text">Properties Panel</div>
+      </section>
     </div>
   )
 }
