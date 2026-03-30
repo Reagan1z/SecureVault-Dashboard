@@ -2,6 +2,7 @@ import React from 'react'
 import './App.css'
 import FileExplorer from './components/FileExplorer/FileExplorer'
 import PropertiesPanel from './components/PropertiesPanel'
+import Breadcrumbs from './components/Breadcrumbs'
 import { FileProvider } from './context/FileContext'
 
 function App() {
@@ -92,6 +93,7 @@ function App() {
         </aside>
         
         <main className="app-main-content">
+          <Breadcrumbs />
           <div className="main-empty-state">
             <div className="empty-icon-container">
               <div className="cyber-circle">
