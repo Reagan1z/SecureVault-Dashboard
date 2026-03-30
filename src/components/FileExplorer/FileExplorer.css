@@ -1,0 +1,104 @@
+.file-explorer {
+  padding: 8px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  width: 100%;
+}
+
+.tree-node-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.tree-node {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+  height: 36px;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  border-radius: 4px;
+  margin: 0 12px;
+  border: 1px solid transparent;
+}
+
+.tree-node:hover {
+  background-color: rgba(255, 255, 255, 0.04);
+}
+
+/* Figma: Active Folder state (semi-transparent blue background) */
+.active-folder {
+  background-color: rgba(88, 166, 255, 0.1);
+  color: var(--bg-accent);
+}
+
+/* Figma: Left blue indicator pill */
+.active-indicator {
+  position: absolute;
+  left: 0px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 18px;
+  background-color: #A2C9FF;
+  border-radius: 12px;
+  margin-left: -12px; /* Pull into the sidebar margin */
+}
+
+/* Figma: Selected File state (blue border outline) */
+.selected-file {
+  border: 1px solid var(--bg-accent);
+  background-color: rgba(88, 166, 255, 0.05);
+}
+
+.node-content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  overflow: hidden;
+}
+
+.node-name {
+  font-family: var(--font-inter);
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  user-select: none;
+}
+
+.active-folder .node-name,
+.selected-file .node-name {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.chevron {
+  width: 8px;
+  height: 8px;
+  transition: transform var(--transition-normal);
+  flex-shrink: 0;
+  opacity: 0.6;
+}
+
+.chevron.open {
+  transform: rotate(90deg);
+}
+
+.chevron-placeholder {
+  width: 8px;
+  height: 8px;
+}
+
+.node-icon {
+  flex-shrink: 0;
+}
+
+.node-children {
+  margin-top: 2px;
+}
