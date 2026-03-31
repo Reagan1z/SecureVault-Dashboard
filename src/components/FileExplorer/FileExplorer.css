@@ -30,8 +30,8 @@
 
 /* Figma: Active Folder state (semi-transparent blue background) */
 .active-folder {
-  background-color: rgba(88, 166, 255, 0.1);
-  color: var(--bg-accent);
+  background-color: var(--bg-active-soft);
+  color: var(--text-accent);
 }
 
 /* Figma: Left blue indicator pill */
@@ -40,16 +40,16 @@
   left: 0px;
   top: 50%;
   transform: translateY(-50%);
-  width: 4px;
-  height: 18px;
-  background-color: #A2C9FF;
-  border-radius: 12px;
-  margin-left: -12px; /* Pull into the sidebar margin */
+  width: 3px;
+  height: 14px;
+  background-color: var(--text-accent);
+  border-radius: 4px;
+  margin-left: -12px;
 }
 
 /* Figma: Selected File state (blue border outline) */
 .selected-file {
-  border: 1px solid var(--bg-accent);
+  border: 1.5px solid var(--bg-accent);
   background-color: rgba(88, 166, 255, 0.05);
 }
 

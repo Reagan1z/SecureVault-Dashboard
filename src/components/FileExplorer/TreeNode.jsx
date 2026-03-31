@@ -33,22 +33,29 @@ const TreeNode = ({ item, level = 0 }) => {
   const getIcon = () => {
     if (isVault) {
       return (
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" className="node-icon vault-icon">
-          <path d="M12 1v22M12 1l-5 5M12 1l5 5M12 23l-5-5M12 23l5 5" stroke="#58A6FF" strokeWidth="2" strokeLinecap="round"/>
-          <path d="M12 12C12 12 7 9 7 6C7 3 9 1 12 1C15 1 17 3 17 6C17 9 12 12 12 12Z" fill="#58A6FF" opacity="0.4"/>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#58A6FF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="node-icon vault-icon">
+          <path d="M17.5 19c2.5 0 4.5-2 4.5-4.5 0-2.3-1.7-4.2-3.9-4.5-.6-3.1-3.3-5.5-6.6-5.5-2.6 0-4.8 1.5-5.9 3.7C3.4 8.7 2 10.7 2 13c0 3.3 2.7 6 6 6h9.5z" />
         </svg>
       );
     }
+
     if (isFolder) {
       return (
-        <svg width="18" height="14" viewBox="0 0 18 14" fill="none" className="node-icon folder-icon">
-          <path d="M1.66667 0.666656C0.75 0.666656 0 1.41666 0 2.33332V11.6667C0 12.5833 0.75 13.3333 1.66667 13.3333H16.3333C17.25 13.3333 18 12.5833 18 11.6667V4.33332C18 3.41666 17.25 2.66666 16.3333 2.66666H9.16667L7.5 0.666656H1.66667Z" fill={isSelected && isFolder ? '#A2C9FF' : '#58A6FF'} />
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={isSelected ? "#A2C9FF" : "#DFE2EB"} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="node-icon folder-icon">
+          <path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z" />
         </svg>
       );
     }
+
+    const isPdf = item.name?.toLowerCase().endsWith('.pdf');
+    const fileStroke = isPdf ? '#FF8B8B' : '#B0B5BE';
+
     return (
-      <svg width="14" height="17" viewBox="0 0 14 17" fill="none" className="node-icon file-icon">
-        <path d="M0.666667 0.666656C0.3 0.666656 0 0.966656 0 1.33332V15.6667C0 16.0333 0.3 16.3333 0.666667 16.3333H13.3333C13.7 16.3333 14 16.0333 14 15.6667V4.66666L10 0.666656H0.666667ZM9.33333 5.33332V1.33332L13.3333 5.33332H9.33333Z" fill="#8B919D" />
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={fileStroke} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="node-icon file-icon">
+        <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
+        <polyline points="14 2 14 8 20 8" />
+        {isPdf && <line x1="8" y1="13" x2="16" y2="13" strokeWidth="1.2" />}
+        {isPdf && <line x1="8" y1="17" x2="12" y2="17" strokeWidth="1.2" />}
       </svg>
     );
   };
