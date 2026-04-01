@@ -1,12 +1,4 @@
-/* 
-  SecureVault Design System Tokens
-  Phase 1 Requirement: "Dark Mode" aesthetic that feels
-  "cyber-secure, precise, and fast."
-*/
-
 :root {
-  /* --- Figma Design Tokens --- */
-  
   /* Colors */
   --bg-app: #0A0E14;
   --bg-panel: #181C22;
@@ -15,14 +7,14 @@
   --bg-accent: #58A6FF;
   --bg-overlay: rgba(38, 42, 49, 0.4);
   --bg-active-soft: rgba(88, 166, 255, 0.1);
-  
+
   /* Text */
   --text-primary: #DFE2EB;
   --text-secondary: #B0B5BE;
   --text-muted: rgba(176, 181, 190, 0.5);
   --text-accent: #A2C9FF;
   --text-on-accent: #003A6B;
-  
+
   /* Borders */
   --border-main: #30363D;
   --border-glass: rgba(255, 255, 255, 0.04);
@@ -31,7 +23,7 @@
   /* Typography */
   --font-manrope: 'Manrope', sans-serif;
   --font-inter: 'Inter', sans-serif;
-  
+
   /* Default font assignment */
   --font-family: var(--font-inter);
 
@@ -39,7 +31,7 @@
   --header-height: 76px;
   --sidebar-width: 344px;
   --properties-width: 279px;
-  
+
   --radius-sm: 4px;
   --radius-md: 8px;
   --radius-lg: 12px;

@@ -25,7 +25,7 @@ const Breadcrumbs = () => {
       {path.map((node, index) => (
         <React.Fragment key={node.id}>
           <span className="breadcrumb-separator">/</span>
-          <span 
+          <span
             className={`breadcrumb-item clickable ${index === path.length - 1 ? 'active' : ''}`}
             onClick={() => selectItem(node)}
           >

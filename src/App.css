@@ -2,7 +2,7 @@
   display: grid;
   grid-template-columns: var(--sidebar-width) 1fr var(--properties-width);
   grid-template-rows: var(--header-height) 1fr;
-  grid-template-areas: 
+  grid-template-areas:
     "header header header"
     "sidebar main properties";
   height: 100vh;
@@ -38,7 +38,7 @@
   letter-spacing: -0.5px;
 }
 
-/* Header Center - Search */
+/* Header Center */
 .header-center {
   flex: 1;
   display: flex;
@@ -405,6 +405,7 @@
   .securevault-app {
     grid-template-columns: var(--sidebar-width) 1fr 0px;
   }
+
   .properties-panel {
     display: none;
   }
@@ -414,14 +415,18 @@
   .securevault-app {
     grid-template-columns: 0px 1fr 0px;
   }
+
   .sidebar {
     display: none;
   }
+
   .app-header {
     padding: 0 20px;
   }
+
   .header-center {
-    display: none; /* Hide search on mobile header to save space, or move it elsewhere */
+    display: none;
+    /* Hide search on mobile header to save space, or move it elsewhere */
   }
 }
 
